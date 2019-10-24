@@ -1,0 +1,13 @@
+{
+  "dependencySets": [
+    "employee-assignment",
+    "effectivity",
+    "job-type",
+    "form-date",
+    "digital-signature",
+    "employee-profile",
+    "fc-common"
+  ],
+  "fluidImports": [],
+  "name": "ec-forms"
+}
