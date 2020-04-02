@@ -1,0 +1,9 @@
+{
+  "dependencySets": [
+    "effectivity",
+    "credentials",
+    "fc-common"
+  ],
+  "fluidImports": [],
+  "name": "ec-settings"
+}
