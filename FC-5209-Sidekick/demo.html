@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sidekick test</title>
+	<base href="/">
+	<link rel="stylesheet" href="/sidekick.css" media="screen" charset="utf-8">
+</head>
+
+<body>
+
+	<h1>this is a basic web page test with the sidekick</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam veritatis, quibusdam nobis debitis facere voluptatum aspernatur numquam sed, rerum! Vitae sunt eius vero, illo totam facere, ipsam nisi distinctio beatae.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus neque vitae deleniti itaque inventore velit officia sit laboriosam aperiam odio sequi consectetur adipisci impedit perspiciatis ut amet est, laudantium sapiente.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium quas alias iusto distinctio, sunt sapiente obcaecati cum dolorum esse! Non laudantium, officiis consectetur dolorem numquam libero ea illo nobis inventore?</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis eveniet fugiat tempore, minima libero, iure. Quae nulla atque molestiae recusandae. Tempora ab sint ratione omnis esse, dignissimos eum, obcaecati quasi.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam veritatis, quibusdam nobis debitis facere voluptatum aspernatur numquam sed, rerum! Vitae sunt eius vero, illo totam facere, ipsam nisi distinctio beatae.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus neque vitae deleniti itaque inventore velit officia sit laboriosam aperiam odio sequi consectetur adipisci impedit perspiciatis ut amet est, laudantium sapiente.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium quas alias iusto distinctio, sunt sapiente obcaecati cum dolorum esse! Non laudantium, officiis consectetur dolorem numquam libero ea illo nobis inventore?</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis eveniet fugiat tempore, minima libero, iure. Quae nulla atque molestiae recusandae. Tempora ab sint ratione omnis esse, dignissimos eum, obcaecati quasi.</p>
+
+	<!-- ONLY NEEDED IF IE9 SUPPORT IS REQUIRED -->
+	<!--[if IE 9]>
+	<script src="xdomain.js" slave="https://idgatewayawsdev.flqa.net/IE9/proxy.html"></script>
+	<![endif]-->
+
+	<!--[if gt IE 8]><!-->
+	<script src="/sidekick.js" charset="utf-8"></script>
+
+	<script>
+		var notificationsData = [
+			{
+				title: 'this is notification 1',
+				content: 'BOOM! You got notified about <a href="/demo.html?foo=1">Thing You Must Do</a>... punk!',
+				unread: true
+			}, {
+				title: 'this is notification 2',
+				content: 'BOOM! You got notified... pappa!',
+				timestamp: 'TODAY'
+			}
+		];
+		var helpData = {
+			'articles': [{
+				'title': 'Getting Started with Frontline Central',
+				'url': '/getting_started',
+				'icon': 'fa-learning_center_logo'
+			}],
+			'blocks': [{
+				'title': 'articles',
+				'url': '/articles',
+				'icon': 'fa-learning_center_logo'
+			}, {
+				'title': 'feedback',
+				'url': '/feedback',
+				'icon': 'fa-li-lightbulb'
+			}, {
+				'id': 'livechat',
+				'title': 'live chat',
+				'icon': 'fa-li-chatbubbles'
+			}]
+		};
+
+		var roleData = {
+			currentRole: 1,
+			roles: [
+				{ id: 1, name: 'Teacher' },
+				{ id: 2, name: 'Admin' }
+			]
+		};
+
+		sidekick.init({addSidekickCss: false});
+		// sidekick.init();
+		// sidekick.events.emit('header.impersonation', true);
+		sidekick.store.set('org-switcher-data', {
+			currentOrg: '10135',
+			orgs: [
+				{ id: '10135', name: 'lead behind school district 489 ISD' },
+				{ id: '10136', name: 'age man school district 844 ISD' },
+				{ id: '10137', name: 'Boston School District' },
+				{ id: '10138', name: 'Lancaster School District' },
+				{ id: '10139', name: 'Malvern School' },
+				{ id: '10140', name: 'Exton Elementary School' },
+				{ id: '10141', name: 'Downingtown East' }
+			]
+		});
+
+		sidekick.store.set('app-switcher-data', {
+			currentApp: 'EC',
+			apps: [
+				{ id: 'EC', name: 'Frontline Central' },
+				{ id: 'AT', name: 'Absence & Time' },
+				{ id: 'RH', name: 'Recruiting & Hiring', legacyName: 'Applitrack' }
+			]
+		});
+
+		sidekick.store.set('roles', roleData);
+		sidekick.store.set('user-data', {
+			firstName: 'Joe',
+			lastName: 'Developer',
+			// showAcctSettings: false, // defaults to true
+			// showSignOut: true
+		});
+
+		// sidekick.store.set('idm', {
+		// 	idGatewayUrl: 'https://idserverqa.flqa.net/',
+		// 	accessToken: '4aedb455047ecf0fb94a93fab0403f5e',
+		// 	product: 'EC',
+		// 	flId: 99532
+		// });
+
+		sidekick.store.set('search', { limit: 20 });
+		sidekick.store.set('notifications', []);
+		sidekick.store.set('current-org', {
+			id: 10135,
+			name: 'Test Org',
+			phone: '(215) 555-1212',
+			email: 'info@frontlineeducation.com',
+			contactName: 'Joe Developer',
+			comments: 'This is a test org for developers'
+		});
+		sidekick.store.set('org-branding-data', {
+			rectangleImagePublicUrl: 'https://monosnap.com/file/Rk61FmXYlvTPuxYhJ4jwOtV6DT9hfV.png',
+			squareImagePublicUrl: 'https://monosnap.com/file/3VLdyssRLN0BbATCZU9cTm6wijlGHf.png'
+		});
+
+		setTimeout(function () {
+			// sidekick.store.set('activity-indicator', {});
+			sidekick.store.set('activity-indicator', {url: 'http://www.example.com'});
+			sidekick.store.set('help', helpData);
+			sidekick.store.set('notifications', notificationsData);
+
+			sidekick.events.on('header.user-info.role', function (role) {
+				roleData.currentRole = role.id;
+				alert('role set to ' + role.name);
+				sidekick.store.set('roles', roleData);
+			});
+
+			setTimeout(function () {
+				// helpData.blocks.pop();
+				sidekick.store.set('help', helpData);
+			}, 3000);
+
+			sidekick.store.set('nav', {
+				'test': 'test 1',
+				'menuItems': [{
+					'title': 'Dashboard',
+					'icon': 'fa-li-dashboard',
+					'url': '/sidekick/demo.html',
+					'menuName': 'dashboard menu item'
+				}, {
+					'title': 'Forms Inbox',
+					'icon': 'fa-li-form-inbox',
+					'url': '/ec-forms/my-forms',
+					'badgeEvent': 'inbox-count'
+				}, {
+					'title': 'Track Forms',
+					'icon': 'fa-li-track-forms',
+					'url': '/ec-forms/form-tracking',
+					'badgeEvent': 'track-badge'
+				}, {
+					'title': 'Form Templates',
+					'icon': 'fa-li-form-templates',
+					'url': '/ec-forms/form-templates'
+				}, {
+					'title': 'Employee Directory',
+					'icon': 'fa-li-users',
+					'url': '/ec-employee/'
+				}, {
+					'title': 'Reports',
+					'icon': 'fa-li-reports',
+					'children': [{
+						'title': 'Users',
+						'children': [{
+							'title': 'User Report 1',
+							'url': '/ec-settings/general-config'
+						}, {
+							'title': 'User Report 2',
+							'url': '/ec-settings/user-accounts'
+						}, {
+							'title': 'User Report 3',
+							'url': '/ec-settings/permissions'
+						}]
+					}, {
+						'title': 'Statistics',
+						'children': [{
+							'title': 'Statistics Report 1',
+							'url': '/ec-settings/general-config'
+						}, {
+							'title': 'Statistics Report 2',
+							'url': '/ec-settings/user-accounts'
+						}, {
+							'title': 'Statistics Report 3',
+							'url': '/ec-settings/permissions'
+						}]
+					}, {
+						'title': 'Generic',
+						'children': [{
+							'title': 'Lorem ipsum dolor',
+							'url': '/ec-settings/general-config'
+						}, {
+							'title': 'sit amet, consectetur',
+							'url': '/ec-settings/user-accounts'
+						}, {
+							'title': 'adipisicing elit',
+							'url': '/ec-settings/permissions'
+						},{
+							'title': 'sed do',
+							'url': '/ec-settings/general-config'
+						}, {
+							'title': 'eiusmod tempor',
+							'url': '/ec-settings/user-accounts'
+						}, {
+							'title': 'incididunt ut labore et dolore',
+							'url': '/ec-settings/permissions'
+						},{
+							'title': 'magna aliqua',
+							'url': '/ec-settings/general-config'
+						}, {
+							'title': 'Ut enim ad minim veniam',
+							'url': '/ec-settings/user-accounts'
+						}, {
+							'title': 'quis nostrud exercitation',
+							'url': '/ec-settings/permissions'
+						}]
+					}]
+				}, {
+					'title': 'Settings',
+					'icon': 'fa-li-settings',
+					'url': '/ec-settings',
+					'children': [{
+						'title': 'General Configuration',
+						'url': '/ec-settings/general-config',
+						'menuName': 'general config'
+					}, {
+						'title': 'Manage Accounts',
+						'url': '/ec-settings/user-accounts',
+						'flag': 'manageUserAccounts'
+					}, {
+						'title': 'Permissions',
+						'url': '/ec-settings/permissions',
+						'children': [{
+							'title': 'General Configuration',
+							'url': '/ec-settings/general-config',
+							'menuName': 'permissions general config'
+						}, {
+							'title': 'Manage Accounts',
+							'url': '/ec-settings/user-accounts',
+							'flag': 'manageUserAccounts'
+						}, {
+							'title': 'Permissions',
+							'url': '/ec-settings/permissions'
+						}]
+					}]
+				}]
+			});
+
+			var msgCount = 0;
+			setInterval(function () {
+				sidekick.events.emit('inbox-count', ++msgCount);
+			}, 2000);
+
+		}, 1000);
+
+
+		setTimeout(function () {
+			sidekick.events.emit('track-badge', true);
+
+			setTimeout(function () {
+				sidekick.events.emit('track-badge', false);
+			}, 5000);
+		}, 5000);
+
+		setTimeout(function () {
+
+			sidekick.events.emit('activity-indicator.visible', true);
+
+			setTimeout(function () {
+				sidekick.events.emit('activity-indicator.visible', false);
+			}, 5000);
+
+		}, 3000);
+
+		sidekick.events.on('activity-indicator.clicked', function() {
+			alert('Activity Indicator has been clicked');
+		});
+
+		sidekick.events.on('header.search.enter-pressed', function(search) {
+			alert('search' + search);
+		});
+
+		sidekick.events.on('notification.mark-as-read', function (n) {
+			n.unread = false;
+			sidekick.store.set('notifications', notificationsData);
+		});
+
+		sidekick.events.on('header.help.article.click', function(a) {
+			alert('You clicked on article: ' + a.title);
+		});
+
+		sidekick.events.on('header.help.block.click', function(b) {
+			alert('You clicked on block: ' + b.title);
+		});
+
+		sidekick.events.on('nav.menu-item-clicked', function (item, evt) {
+			console.log('menu item clicked!', item);
+			console.log('click prevented for demo page');
+			evt.preventDefault();
+		});
+
+		sidekick.events.on('notification.delete', function (n) {
+			notificationsData = notificationsData.filter(function (item) {
+				return item !== n;
+			});
+			sidekick.store.set('notifications', notificationsData);
+		});
+	</script>
+	<!--<![endif] -->
+</body>
+
+</html>
