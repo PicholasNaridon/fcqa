@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sidekick test</title>
+	<base href="/">
+</head>
+
+<body>
+
+	<h1>this is a basic web page test with the sidekick</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam veritatis, quibusdam nobis debitis facere voluptatum aspernatur numquam sed, rerum! Vitae sunt eius vero, illo totam facere, ipsam nisi distinctio beatae.</p>
+	<!-- ONLY NEEDED IF IE9 SUPPORT IS REQUIRED -->
+	<!--[if IE 9]>
+	<script src="xdomain.js" slave="https://idgatewayawsdev.flqa.net/IE9/proxy.html"></script>
+	<![endif]-->
+
+	<!--[if gt IE 8]><!-->
+	<script src="/sidekick.js" charset="utf-8"></script>
+
+	<script>
+		var notificationsData = [
+			{
+				title: 'this is notification 1',
+				content: 'BOOM! You got notified... punk!',
+				unread: true
+			}, {
+				title: 'this is notification 2',
+				content: 'BOOM! You got notified... pappa!',
+				timestamp: 'TODAY'
+			}
+		];
+		var helpData = {
+			'articles': [{
+				'title': 'Getting Started with Frontline Central',
+				'url': '/getting_started',
+				'icon': 'fa-file-text'
+			}],
+			'blocks': [{
+				'title': 'articles',
+				'url': '/articles',
+				'icon': 'fa-learning_center_logo'
+			}, {
+				'title': 'feedback',
+				'url': '/feedback',
+				'icon': 'fa-li-lightbulb'
+			}, {
+				'title': 'live chat',
+				'url': '/chat',
+				'icon': 'fa-li-chatbubbles'
+			}]
+		};
+
+		sidekick.init({
+			// =====================================
+			// these are the defaults for all of the
+			// init config object properties
+			// -------------------------------------
+			// appElement: document.body,	// the html element the sk should surround
+			// addIcons: true,				// automagically add the icon font
+			// addOpenSans: true,			// automagically add open sans font-face
+			// addSidekickCss: true			// automagically add sidekick.css to the header
+		});
+
+		sidekick.store.set('idm', {
+			idGatewayUrl: 'https://idgatewayawsdev.flqa.net',
+			getAccessToken: function () {
+				// returns a valid access token
+				return '2bd8d01266c47603989a3bd114c1a1ca';
+			},
+			product: 'EC',
+			flId: 45056
+		});
+
+		sidekick.store.set('search', { limit: 20 });
+		sidekick.store.set('notifications', []);
+		sidekick.store.set('current-org', {
+			id: 10135,
+			name: 'Test Org',
+			phone: '(215) 555-1212',
+			email: 'info@frontlineeducation.com'
+		});
+
+		setTimeout(function () {
+			sidekick.store.set('help', helpData);
+			sidekick.store.set('notifications', notificationsData);
+
+			sidekick.store.set('nav', {
+				'test': 'test 1',
+				'menuItems': [{
+					'title': 'Dashboard',
+					'icon': 'fa-nav-tachometer',
+					'url': '/ec-dashboard/'
+				}, {
+					'title': 'Forms Inbox',
+					'icon': 'fa-nav-inbox',
+					'url': '/ec-forms/my-forms'
+				},  {
+					'title': 'Track Forms',
+					'icon': 'fa-li-track-forms',
+					'url': '/ec-forms/form-tracking'
+				}, {
+					'title': 'Form Templates',
+					'icon': 'fa-li-form-templates',
+					'url': '/ec-forms/form-templates'
+				}, {
+					'title': 'Employee Directory',
+					'icon': 'fa-li-users',
+					'url': '/ec-employee/'
+				}, {
+					'title': 'Reports',
+					'icon': 'fa-li-reports',
+					'url': '',
+					'children': [{
+						'title': 'Report 1',
+						'url': '/ec-settings/general-config'
+					}, {
+						'title': 'Report 2',
+						'url': '/ec-settings/user-accounts'
+					}, {
+						'title': 'Report 3',
+						'url': '/ec-settings/permissions'
+					}]
+				}, {
+					'title': 'Settings',
+					'icon': 'fa-li-settings',
+					'url': '/ec-settings',
+					'children': [{
+						'title': 'General Configuration',
+						'url': '/ec-settings/general-config'
+					}, {
+						'title': 'Manage Accounts',
+						'url': '/ec-settings/user-accounts',
+						'flag': 'manageUserAccounts'
+					}, {
+						'title': 'Permissions',
+						'url': '/ec-settings/permissions',
+						'children': [{
+							'title': 'General Configuration',
+							'url': '/ec-settings/general-config'
+						}, {
+							'title': 'Manage Accounts',
+							'url': '/ec-settings/user-accounts',
+							'flag': 'manageUserAccounts'
+						}, {
+							'title': 'Permissions',
+							'url': '/ec-settings/permissions'
+						}]
+					}]
+				}]
+			});
+
+		}, 1000);
+
+		sidekick.events.on('notification.mark-as-read', function (n) {
+			n.unread = false;
+			sidekick.store.set('notifications', notificationsData);
+		});
+
+		sidekick.events.on('nav.menu-item-clicked', function (item) {
+			console.log('menu item clicked!', item);
+		});
+
+		sidekick.events.on('notification.delete', function (n) {
+			notificationsData = notificationsData.filter(function (item) {
+				return item !== n;
+			});
+			sidekick.store.set('notifications', notificationsData);
+		});
+	</script>
+	<!--<![endif] -->
+</body>
+
+</html>
