@@ -1,0 +1,9 @@
+{
+  "dependencySets": [
+    "effectivity",
+    "form-date",
+    "fc-common"
+  ],
+  "fluidImports": [],
+  "name": "ec-dashboard"
+}
