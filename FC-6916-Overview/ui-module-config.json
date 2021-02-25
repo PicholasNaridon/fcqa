@@ -1,0 +1,7 @@
+{
+  "dependencySets": [
+    "highcharts"
+  ],
+  "fluidImports": [],
+  "name": "universal-overview"
+}
